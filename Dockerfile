@@ -1,5 +1,6 @@
 FROM ubuntu
 MAINTAINER mwaeckerlin
+ENV TERM xterm
 
 ENV SOURCE_URL="https://github.com"
 ENV SOURCE_PATH="/claudehohl/Stikked"
@@ -17,7 +18,9 @@ WORKDIR /stikked
 RUN mkdir -p /usr/share/nginx
 RUN ln -s /stikked /usr/share/nginx/html
 ADD start.sh /start.sh
+ADD nginx.conf /etc/nginx/sites-enabled/stikker
 CMD /start.sh
 
 VOLUME /stikked
 VOLUME /usr/share/nginx/html
+VOLUME /etc/nginx/sites-enabled
