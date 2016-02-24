@@ -13,18 +13,18 @@ functionality:
                -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
                mysql
     
-    docker run -d --name stikked-volume \
+    docker run -d --name stikked-files \
                --link stikked-mysql:mysql \
                mwaeckerlin/stikked
     
     docker run -d --name stikked-php \
                --link stikked-mysql:mysql \
-               --volumes-from stikked-volume  \
+               --volumes-from stikked-files  \
                mwaeckerlin/php-fpm
     
     docker run -d -p 8080:80 --name stikked-nginx \
                --link stikked-php:php \
-               --volumes-from stikked-volume \
+               --volumes-from stikked-files \
                mwaeckerlin/nginx
 
 A ServiceDock configuration may look as follows:
@@ -47,7 +47,7 @@ A ServiceDock configuration may look as follows:
     "volumes": []
   },
   {
-    "name": "stikked-volume",
+    "name": "stikked-files",
     "image": "mwaeckerlin/stikked",
     "ports": [],
     "env": [],
@@ -70,7 +70,7 @@ A ServiceDock configuration may look as follows:
     "cmd": null,
     "entrypoint": null,
     "volumesfrom": [
-      "stikked-volume"
+      "stikked-files"
     ],
     "links": [
       {
@@ -94,7 +94,7 @@ A ServiceDock configuration may look as follows:
     "cmd": null,
     "entrypoint": null,
     "volumesfrom": [
-      "stikked-volume"
+      "stikked-files"
     ],
     "links": [
       {

@@ -24,7 +24,7 @@ sed -e 's,\(\$config\[.db_hostname.\] = \).*;,\1'"'${MYSQL_LINK_NAME,,*}'"';,' \
     -e 's,\(\$config\[.db_database.\] = \).*;,\1'"'${!dbvar}'"';,' \
     -e 's,\(\$config\[.db_username.\] = \).*;,\1'"'${!uservar}'"';,' \
     -e 's,\(\$config\[.db_password.\] = \).*;,\1'"'${!pwdvar}'"';,' \
-    -e 's,\(\$config\[.enable_capcha.\] = \).*;,\1false;,' \
+    -e 's,\(\$config\[.enable_captcha.\] = \).*;,\1false;,' \
     /stikked/application/config/stikked.php.dist \
     > /stikked/application/config/stikked.php
 sleep infinity
